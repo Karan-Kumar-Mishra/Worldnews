@@ -9,7 +9,7 @@ export default function CardSection() {
         console.log("state detect in card =>", state)
     }, [state])
     return (
-        <div className={`bg-black flex flex-wrap gap-10   justify-center items-center p-4 ${state.Data.info.ProfileTabOpen ? 'blur-3xl' : ''}`}   >
+        <div className={`bg-neutral-500 h-full   flex flex-wrap gap-10   justify-center items-center  p-4 ${state.Data.info.ProfileTabOpen ? 'blur-2xl' : ''}`}   >
             <NewsCard />
             <NewsCard />
             <NewsCard />

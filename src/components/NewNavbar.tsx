@@ -4,17 +4,20 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
+  Dropdown,
   DropdownItem,
   DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
   Avatar,
+  NavbarMenu,
+  NavbarMenuToggle,
+  NavbarMenuItem,
+  DropdownMenu
 } from "@heroui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import {setOpenProfile, setClosePorfile} from '../Redux/Reducers'
+import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
 
-export const AcmeLogo = () => {
+export const WorldnewsLogo = () => {
   return (
     <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
       <path
@@ -71,35 +74,60 @@ export default function NewNavbar() {
     }
   }
   useEffect(() => {
- 
-  }, [state,opeingprofiletab])
+
+  }, [state, opeingprofiletab])
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
   return (
-    <Navbar isBordered>
-      <NavbarContent justify="start">
-        <NavbarBrand className="mr-4">
-          <AcmeLogo />
-          <p className="hidden sm:block font-bold text-inherit">Worldnews.com</p>
-        </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-3">
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link aria-current="page" color="secondary" href="#">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
+    <Navbar isBordered isMenuOpen={isMenuOpen} className="bg-transparent " onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent className="sm:hidden bg-transparent" justify="start">
+        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
-      <NavbarContent as="div" className="items-center" justify="end">
-        <Dropdown placement="bottom-end" className="dark text-white bg-transparent" onOpenChange={(e) => {
+
+      <NavbarContent className="sm:hidden pr-3" justify="center">
+        <NavbarBrand>
+          <WorldnewsLogo />
+          <p className="font-bold text-inherit">Worldnews</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarBrand>
+          <WorldnewsLogo />
+          <p className="font-bold text-inherit">Worldnews</p>
+        </NavbarBrand>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link aria-current="page" href="#">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+
+        <Dropdown placement="bottom-end" className="dark text-white bg-transparent z-50 shadow-2xl" onOpenChange={(e) => {
           opeingprofiletab(e);
         }} >
           <DropdownTrigger>
@@ -130,6 +158,23 @@ export default function NewNavbar() {
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>
+
+      <NavbarMenu className="">
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              className="w-full"
+              color={
+                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 }

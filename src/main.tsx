@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <HeroUIProvider>
-      <main className="dark text-foreground bg-black h-screen">
+      <main className="dark text-foreground bg-gradient-to-b from-neutral-900 to-neutral-700">
         <BrowserRouter>
           <Provider store={store}>
             <ProviderC>

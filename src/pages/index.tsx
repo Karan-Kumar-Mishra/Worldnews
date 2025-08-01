@@ -4,7 +4,7 @@ import CardSection from "@/components/CardSection";
 
 export default function IndexPage() {
   return (
-    <DefaultLayout>
+    <DefaultLayout >
         <NewNavbar />
         <CardSection/>
     </DefaultLayout>
