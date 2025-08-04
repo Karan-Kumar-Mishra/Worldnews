@@ -92,7 +92,7 @@ export default function NewNavbar() {
   ];
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} className="bg-transparent " onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent className="sm:hidden bg-transparent" justify="start">
+      <NavbarContent className="sm:hidden bg-transparent " justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
 
@@ -127,7 +127,7 @@ export default function NewNavbar() {
 
       <NavbarContent justify="end">
 
-        <Dropdown placement="bottom-end" className="dark text-white bg-transparent z-50 shadow-2xl" onOpenChange={(e) => {
+        <Dropdown placement="bottom-end" className="dark text-white bg-transparent border-neutral-600 border-1 z-50 shadow-2xl" onOpenChange={(e) => {
           opeingprofiletab(e);
         }} >
           <DropdownTrigger>
@@ -159,11 +159,11 @@ export default function NewNavbar() {
         </Dropdown>
       </NavbarContent>
 
-      <NavbarMenu className="">
+      <NavbarMenu className="bg-transparent ">
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem className="text-cyan-400 " key={`${item}-${index}`}>
             <Link
-              className="w-full"
+              className="w-full text-white"
               color={
                 index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
               }
