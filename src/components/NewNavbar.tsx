@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
 
+import useGoogle from '../hooks/useGoogle'
+
 export const WorldnewsLogo = () => {
   return (
     <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
@@ -63,6 +65,7 @@ export const SearchIcon = ({ size = 24, strokeWidth = 1.5, width = null, height 
 export default function NewNavbar() {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
+  const { GoogleLogout } = useGoogle();
 
   function opeingprofiletab(value: any) {
     console.log("try to open the profile tab => ", value);
@@ -159,7 +162,9 @@ export default function NewNavbar() {
             <DropdownItem key="system">System</DropdownItem>
             <DropdownItem key="configurations">Configurations</DropdownItem>
             <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-            <DropdownItem key="logout" color="danger">
+            <DropdownItem onClick={() => {
+              GoogleLogout();
+            }} key="logout" color="danger">
               Log Out
             </DropdownItem>
           </DropdownMenu>
