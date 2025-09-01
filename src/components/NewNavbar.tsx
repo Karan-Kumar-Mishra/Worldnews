@@ -110,20 +110,27 @@ export default function NewNavbar() {
         </NavbarBrand>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Features
+            Entertainment
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link aria-current="page" href="#">
-            Customers
+            Business
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            Sport
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Science
           </Link>
         </NavbarItem>
       </NavbarContent>
+
+
 
       <NavbarContent justify="end">
 

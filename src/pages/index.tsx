@@ -1,12 +1,9 @@
 import DefaultLayout from "@/layouts/default";
-import NewNavbar from "@/components/NewNavbar";
-import CardSection from "@/components/CardSection";
-
+import Login from "@/components/Login";
 export default function IndexPage() {
   return (
-    <DefaultLayout >
-        <NewNavbar />
-        <CardSection/>
+    <DefaultLayout>
+       <Login/>
     </DefaultLayout>
   );
 }
