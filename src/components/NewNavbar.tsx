@@ -65,7 +65,8 @@ export const SearchIcon = ({ size = 24, strokeWidth = 1.5, width = null, height 
 export default function NewNavbar() {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
-  const { GoogleLogout } = useGoogle();
+  const { GoogleLogout, GetUserInfo } = useGoogle();
+
 
   function opeingprofiletab(value: any) {
     console.log("try to open the profile tab => ", value);
@@ -76,6 +77,11 @@ export default function NewNavbar() {
       dispatch(setClosePorfile())
     }
   }
+  useEffect(() => {
+    console.log("state=>", state)
+    
+    GetUserInfo(state.Data.info.user.token);
+  }, [state])
   useEffect(() => {
 
   }, [state, opeingprofiletab])
@@ -148,13 +154,13 @@ export default function NewNavbar() {
               color="secondary"
               name="Jason Hughes"
               size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              src={state.Data.info.user.picture}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2 dark">
               <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">zoey@example.com</p>
+              <p className="font-semibold">{state.Data.info.user.email}</p>
             </DropdownItem>
             <DropdownItem key="settings">My Settings</DropdownItem>
             <DropdownItem key="team_settings">Team Settings</DropdownItem>
