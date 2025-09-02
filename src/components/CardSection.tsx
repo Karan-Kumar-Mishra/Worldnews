@@ -1,4 +1,4 @@
-import NewsCard from "./NewsCard"
+
 import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -6,18 +6,19 @@ import NewsSkeleton from "./NewsSkeleton";
 import NewNavbar from "./NewNavbar";
 import jsondata from "./data.json";
 import { Card, CardHeader, CardFooter, Image, Button } from "@heroui/react";
+import { nanoid } from "nanoid";
 
 export default function CardSection() {
     const state = useSelector((state) => state)
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const uniqueKey = nanoid();
 
     const fetchMoreData = async () => {
         try {
             const response = await fetch(`https://api.example.com/items?page=${page}`);
             const newItems = await response.json();
-
             setItems(prevItems => [...prevItems, ...newItems]);
             setHasMore(newItems.length > 0);
             setPage(prevPage => prevPage + 1);
@@ -26,8 +27,13 @@ export default function CardSection() {
         }
     };
     useEffect(() => {
-        console.log("state detect in card =>", state)
-    }, [state])
+        setTimeout(() => {
+            if (localStorage.getItem("email") == null) {
+                window.location.href = "/";
+            }
+        }, 1000);
+    }, [])
+
     return (
         <div>
             <NewNavbar />
@@ -43,7 +49,7 @@ export default function CardSection() {
                 {
                     jsondata.results.map((item) => {
                         return (
-                            <Card isFooterBlurred className="w-[350px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-900 shadow-2xl">
+                            <Card key={uniqueKey} isFooterBlurred className="w-[350px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-900 shadow-2xl">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                                     <p className="text-tiny text-white/60 uppercase font-bold">{item.pubDate}</p>
                                     <h4 className="text-white/90 font-medium text-xl">{item.title}</h4>

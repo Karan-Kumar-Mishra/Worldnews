@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CounterState,usertype } from '@/types/interface'
+import { CounterState, usertype } from '@/types/interface'
 
 const initialState: CounterState = {
     info: {
         ProfileTabOpen: false,
         user: {
-            token: "",
-            email: "",
-            family_name: "User",
-            given_name: "user",
-            id: "",
-            name: "",
+            token: null,
+            email: null,
+            family_name: null,
+            given_name: null,
+            id: null,
+            name: null,
             picture: "https://static.thenounproject.com/png/5100711-200.png",
-            verified_email: true
+            verified_email: null
         }
     },
 
@@ -38,6 +38,14 @@ export const Reducers = createSlice({
             state.info.user.id = action.payload.id;
             state.info.user.name = action.payload.name;
             state.info.user.picture = action.payload.picture;
+        },
+        clearProfile: (state) => {
+            state.info.user.email = null;
+            state.info.user.family_name = null;
+            state.info.user.given_name = null;
+            state.info.user.id = null;
+            state.info.user.name = null;
+            state.info.user.picture = null;
         }
     },
 })

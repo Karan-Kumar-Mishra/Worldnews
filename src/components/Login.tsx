@@ -1,12 +1,18 @@
 
+import { useEffect } from 'react';
 import useGoogle from '../hooks/useGoogle'
-
 const Login = () => {
-
   const { GoogleSignIn } = useGoogle();
   const handleGithubSignIn = () => {
     console.log('Github sign-in initiated');
   };
+  useEffect(() => {
+    setTimeout(() => {
+      if (localStorage.getItem("email") !== null) {
+        window.location.href = "/news";
+      }
+    }, 1000);
+  }, [])
 
 
   return (

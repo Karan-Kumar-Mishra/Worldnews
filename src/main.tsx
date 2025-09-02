@@ -1,4 +1,4 @@
-import React from "react";
+
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_CLIENT_ID}>
       <HeroUIProvider>
         <main className="dark text-foreground bg-black ">
@@ -24,5 +24,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </main>
       </HeroUIProvider>
     </GoogleOAuthProvider>
-  </React.StrictMode>,
+  ,
 );
