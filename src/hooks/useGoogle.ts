@@ -27,10 +27,11 @@ function useGoogle() {
                         localStorage.setItem("email", res.data.email);
                         localStorage.setItem("name", res.data.name);
                         localStorage.setItem("picture", res.data.picture);
+                        navigate("/news");
                     })
                     .catch((err) => alert(err));
             }
-            navigate("/news");
+      
         },
         onError: (error) => console.log("Login Failed:", error),
     });

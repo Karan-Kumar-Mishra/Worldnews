@@ -79,7 +79,7 @@ export default function NewNavbar() {
   }
 
   useEffect(() => {
-
+    console.log("state=>", state)
   }, [state, opeingprofiletab])
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -135,7 +135,9 @@ export default function NewNavbar() {
         </NavbarItem>
       </NavbarContent>
 
-
+      <NavbarContent className="ml-100">
+        <SearchIcon />
+      </NavbarContent>
 
       <NavbarContent justify="end">
 
@@ -150,7 +152,7 @@ export default function NewNavbar() {
               color="secondary"
               name="Jason Hughes"
               size="sm"
-              src={(localStorage.getItem('picture')) ? localStorage.getItem('picture') : "https://static.thenounproject.com/png/5100711-200.png"}
+              src={(localStorage.getItem('picture')) ? localStorage.getItem('picture') : state?.Data?.info?.user?.picture}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -173,7 +175,7 @@ export default function NewNavbar() {
         </Dropdown>
       </NavbarContent>
 
-      <NavbarMenu className="bg-transparent ">
+      <NavbarMenu className="bg-transparent">
         {menuItems.map((item, index) => (
           <NavbarMenuItem className="text-cyan-400 " key={`${item}-${index}`}>
             <Link

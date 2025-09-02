@@ -3,7 +3,7 @@ import { Card, CardHeader, CardFooter } from "@heroui/react";
 export default function SkeletonCard() {
     return (
 
-        <Card isFooterBlurred className="w-[350px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-900  bg-gray-800  shadow">
+        <Card isFooterBlurred className="w-[300px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-900  bg-gray-800  shadow">
             <CardHeader className="absolute z-10  flex-col items-start bg-gray-700 animate-pulse">
                 <p className="text-tiny text-white/60 uppercase font-bold animate-pulse">Loading...</p>
                 <h4 className="text-white/90 font-medium text-xl animate-pulse">Loading...</h4>

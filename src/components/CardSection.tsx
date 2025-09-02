@@ -49,7 +49,7 @@ export default function CardSection() {
                 {
                     jsondata.results.map((item) => {
                         return (
-                            <Card key={uniqueKey} isFooterBlurred className="w-[350px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-900 shadow-2xl">
+                            <Card key={uniqueKey} isFooterBlurred className="w-[300px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-800 shadow-2xl ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                                     <p className="text-tiny text-white/60 uppercase font-bold">{item.pubDate}</p>
                                     <h4 className="text-white/90 font-medium text-xl">{item.title}</h4>
