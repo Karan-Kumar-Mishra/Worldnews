@@ -11,11 +11,19 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
   NavbarMenuItem,
-  DropdownMenu
+  DropdownMenu,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
 } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
+import React from "react";
 
 import useGoogle from '../hooks/useGoogle'
 
@@ -82,6 +90,16 @@ export default function NewNavbar() {
     console.log("state=>", state)
   }, [state, opeingprofiletab])
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [backdrop, setBackdrop] = React.useState("opaque");
+
+  const backdrops = ["opaque", "blur", "transparent"];
+
+  const handleOpen = (backdrop) => {
+    setBackdrop(backdrop);
+    onOpen();
+  };
+
 
   const menuItems = [
     "Profile",
@@ -136,7 +154,14 @@ export default function NewNavbar() {
       </NavbarContent>
 
       <NavbarContent className="ml-100">
-        <SearchIcon />
+        <Button
+          className="capitalize"
+          color="default"
+          variant="flat"
+          onPress={() => handleOpen("blur")}
+        >
+          <SearchIcon />
+        </Button>
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -191,6 +216,42 @@ export default function NewNavbar() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+      <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
+        <ModalContent className="bg-black text-white">
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalBody>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
+                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
+                  quam.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
+                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
+                  quam.
+                </p>
+                <p>
+                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit dolor
+                  adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit
+                  officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et mollit incididunt
+                  nisi consectetur esse laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
+                  deserunt nostrud ad veniam.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </Navbar>
   );
 }

@@ -13,7 +13,7 @@ export default function NewsSkeleton() {
             <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
-            <SkeletonCard />
+   
         </div>
     )
 }
