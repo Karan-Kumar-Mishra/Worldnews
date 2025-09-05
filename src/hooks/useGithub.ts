@@ -19,6 +19,8 @@ export default function useGithub() {
     } else {
       console.log("User info =>", user);
       localStorage.setItem("email", user?.email || "");
+      localStorage.setItem("name", user?.user_metadata.user_name);
+      localStorage.setItem("picture", user?.user_metadata.avatar_url);
     }
   }
 
@@ -34,7 +36,6 @@ export default function useGithub() {
       console.error("SignIn error =>", error);
       return;
     }
-
     console.log("OAuth response =>", data);
   }
 

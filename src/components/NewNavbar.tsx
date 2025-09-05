@@ -25,6 +25,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
 import React from "react";
 import SearchBar from "./SearchBar";
+import useGithub from "@/hooks/useGithub";
 
 import useGoogle from '../hooks/useGoogle'
 
@@ -75,6 +76,7 @@ export default function NewNavbar() {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
   const { GoogleLogout } = useGoogle();
+  const { signOut }= useGithub();
 
 
   function opeingprofiletab(value: any) {
@@ -195,6 +197,7 @@ export default function NewNavbar() {
             <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
             <DropdownItem onClick={() => {
               GoogleLogout();
+              signOut();
             }} key="logout" color="danger">
               Log Out
             </DropdownItem>
@@ -224,7 +227,6 @@ export default function NewNavbar() {
       }}>
         <ModalContent className="bg-transparent border-white border-1 text-white shadow-3xl">
           {(onClose) => (
-
             <>
               <ModalBody>
                 <SearchBar />
