@@ -1,77 +1,47 @@
-import React from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-} from "@heroui/react";
+import { useState } from "react"
+
 
 export default function SearchBar() {
-  const {isOpen, onOpen, onClose} = useDisclosure();
-  const [backdrop, setBackdrop] = React.useState("opaque");
-
-  const backdrops = ["opaque", "blur", "transparent"];
-
-  const handleOpen = (backdrop) => {
-    setBackdrop(backdrop);
-    onOpen();
-  };
-
+  const data = [
+    "first",
+    "second",
+    "thred",
+    "foure",
+    "five"
+  ]
+  const [items, setitems] = useState<string[]>([])
+  function handelchange(e:React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    if (value.length > 0) {
+      const filterdata = data.filter((item) => 
+       item.toLowerCase().includes(value.toLowerCase())
+      )
+      console.log("running filter data=>", filterdata)
+      setitems(filterdata)
+    }
+    else {
+      setitems([])
+    }
+  }
   return (
-    <>
-      <div className="flex flex-wrap gap-3">
-        {backdrops.map((b) => (
-          <Button
-            key={b}
-            className="capitalize"
-            color="warning"
-            variant="flat"
-            onPress={() => handleOpen(b)}
-          >
-            {b}
-          </Button>
-        ))}
+    <div className=' flex flex-col '>
+      <div className='m-1 text-white'>
+        <input
+          placeholder="Search the news here....."
+          onChange={handelchange}
+          className='w-95 border-white z-50 text-white p-1  outline-none rounded-[10px]' type="text" name="" id="" />
       </div>
-      <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-              <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit dolor
-                  adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit
-                  officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
-                  deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    </>
-  );
+      <div className=''>
+        {
+          (
+            items.map((item) =>
+            (
+              <h1 key={item} className='m-2 p-2 text-white rounded-2xl bg-neutral-600'>{item}</h1>
+            )
+            )
+          )
+        }
+      </div>
+    </div>
+  )
 }
-

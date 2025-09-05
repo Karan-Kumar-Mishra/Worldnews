@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
 import React from "react";
+import SearchBar from "./SearchBar";
 
 import useGoogle from '../hooks/useGoogle'
 
@@ -77,7 +78,6 @@ export default function NewNavbar() {
 
 
   function opeingprofiletab(value: any) {
-    console.log("try to open the profile tab => ", value);
     if (value) {
       dispatch(setOpenProfile())
     }
@@ -93,11 +93,12 @@ export default function NewNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState("opaque");
 
-  const backdrops = ["opaque", "blur", "transparent"];
+
 
   const handleOpen = (backdrop) => {
     setBackdrop(backdrop);
     onOpen();
+    dispatch(setOpenProfile())
   };
 
 
@@ -177,6 +178,7 @@ export default function NewNavbar() {
               color="secondary"
               name="Jason Hughes"
               size="sm"
+              onError={state.Data.info.user.picture}
               src={(localStorage.getItem('picture')) ? localStorage.getItem('picture') : state?.Data?.info?.user?.picture}
             />
           </DropdownTrigger>
@@ -216,38 +218,17 @@ export default function NewNavbar() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
-      <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose}>
-        <ModalContent className="bg-black text-white">
+      <Modal backdrop={backdrop} isOpen={isOpen} onClose={() => {
+        onClose()
+        dispatch(setClosePorfile())
+      }}>
+        <ModalContent className="bg-transparent border-white border-1 text-white shadow-3xl">
           {(onClose) => (
+
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
               <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit dolor
-                  adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. Velit duis sit
-                  officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
-                  deserunt nostrud ad veniam.
-                </p>
+                <SearchBar />
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>
