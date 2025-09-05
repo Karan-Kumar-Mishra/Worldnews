@@ -5,8 +5,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import NewsSkeleton from "./NewsSkeleton";
 import NewNavbar from "./NewNavbar";
 import jsondata from "./data.json";
-import { Card, CardHeader, CardFooter, Image, Button } from "@heroui/react";
+import { Card, CardHeader, CardFooter, Image } from "@heroui/react";
 import { nanoid } from "nanoid";
+import useGithub from "@/hooks/useGithub";
 
 export default function CardSection() {
     const state = useSelector((state) => state)
@@ -14,6 +15,7 @@ export default function CardSection() {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const uniqueKey = nanoid();
+    const { Getuser } = useGithub()
 
     const fetchMoreData = async () => {
         try {
@@ -27,9 +29,10 @@ export default function CardSection() {
         }
     };
     useEffect(() => {
+        Getuser();
         setTimeout(() => {
             if (localStorage.getItem("email") == null) {
-                window.location.href = "/";
+                // window.location.href = "/";
             }
         }, 1000);
     }, [])
