@@ -29,7 +29,7 @@ function useGoogle() {
                         localStorage.setItem("picture", res.data.picture);
                         navigate("/news");
                     })
-                    .catch((err) => alert(err));
+                    .catch((err) => console.log(err));
             }
       
         },

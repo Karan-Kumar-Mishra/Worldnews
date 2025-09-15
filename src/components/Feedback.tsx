@@ -1,155 +1,27 @@
-import React from "react";
-import { Form, Input, Checkbox, Button, Textarea } from "@heroui/react";
+import Background from "./ui/Background";
 
 export default function Feedback() {
-    const [password, setPassword] = React.useState("");
-    const [submitted, setSubmitted] = React.useState(null);
-    const [errors, setErrors] = React.useState({});
+  return (
+    <div className="h-screen w-screen bg-black  flex justify-center items-center ">
+    <Background/>
+      <form action="https://formsubmit.co/2e725f6230466d3c0b246217003191d6" method="POST" className="flex flex-col gap-5 rounded-2xl  p-20">
+        <input className="p-2 rounded-2xl border-1 border-gray-600 " type="text" name="name" placeholder="Enter your name" />
+        <input className="p-2 rounded-2xl border-1 border-gray-600" type="email" name="email" placeholder="Enter your email" />
+        <textarea
+          required
+          placeholder="Message"
+          cols={40}
+          rows={5}
+          className="p-2 rounded-2xl border-1 border-gray-600 "
+          name="subject"
+        ></textarea>
+        <button
+          type={"submit"}
+          value={"Send"}
+          className=" border-1  rounded-2xl p-2 border-gray-600 ">Send Message</button>
 
-    // Real-time password validation
-    const getPasswordError = (value) => {
-        if (value.length < 4) {
-            return "Password must be 4 characters or more";
-        }
-        if ((value.match(/[A-Z]/g) || []).length < 1) {
-            return "Password needs at least 1 uppercase letter";
-        }
-        if ((value.match(/[^a-z]/gi) || []).length < 1) {
-            return "Password needs at least 1 symbol";
-        }
+      </form>
 
-        return null;
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(e.currentTarget));
-
-        // Custom validation checks
-        const newErrors = {};
-
-        // Password validation
-        const passwordError = getPasswordError(data.password);
-
-        if (passwordError) {
-            newErrors.password = passwordError;
-        }
-
-        // Username validation
-        if (data.name === "admin") {
-            newErrors.name = "Nice try! Choose a different username";
-        }
-
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-
-            return;
-        }
-
-        if (data.terms !== "true") {
-            setErrors({ terms: "Please accept the terms" });
-
-            return;
-        }
-
-        // Clear errors and submit
-        setErrors({});
-        setSubmitted(data);
-    };
-
-    return (
-        <div className="h-screen w-screen flex  justify-center items-center  ">
-
-            <Form
-                className=" w-fit p-5 justify-center items-center space-y-4 bg-transparent  rounded-2xl"
-                validationErrors={errors}
-                onReset={() => setSubmitted(null)}
-                onSubmit={onSubmit}
-            >
-                <div className="flex flex-col gap-4 max-w-md">
-                    <Input
-                        isRequired
-                        errorMessage={({ validationDetails }) => {
-                            if (validationDetails.valueMissing) {
-                                return "Please enter your name";
-                            }
-
-                            return errors.name;
-                        }}
-                        label="Name"
-                        labelPlacement="outside"
-                        name="name"
-                        placeholder="Enter your name"
-                    />
-
-                    <Input
-                        isRequired
-
-                        errorMessage={({ validationDetails }) => {
-                            if (validationDetails.valueMissing) {
-                                return "Please enter your email";
-                            }
-                            if (validationDetails.typeMismatch) {
-                                return "Please enter a valid email address";
-                            }
-                        }}
-                        label="Email"
-                        labelPlacement="outside"
-                        name="email"
-                        placeholder="Enter your email"
-                        type="email"
-                    />
-
-                    <Textarea
-                        isRequired
-                        errorMessage={({ validationDetails }) => {
-                            if (validationDetails.valueMissing) {
-                                return "Please enter your feedback";
-                            }
-                            if (validationDetails.typeMismatch) {
-                                return "Please enter a valid feedback";
-                            }
-                        }}
-                        label="feedback"
-                        labelPlacement="outside"
-                        name="feedback"
-                        placeholder="Enter your feedback"
-                        type="text"
-                    />
-
-                    <Checkbox
-                        isRequired
-                        classNames={{
-                            label: "text-small",
-                        }}
-                        isInvalid={!!errors.terms}
-                        name="terms"
-                        validationBehavior="aria"
-                        value="true"
-                        onValueChange={() => setErrors((prev) => ({ ...prev, terms: undefined }))}
-                    >
-                        I agree to the terms and conditions
-                    </Checkbox>
-
-                    {errors.terms && <span className="text-danger text-small">{errors.terms}</span>}
-
-                    <div className="flex gap-4">
-                        <Button className="w-full" color="primary" type="submit">
-                            Submit
-                        </Button>
-                        <Button type="reset" variant="bordered">
-                            Reset
-                        </Button>
-                    </div>
-                </div>
-
-                {submitted && (
-                    <div className="text-small text-default-500 mt-4">
-                        Submitted data: <pre>{JSON.stringify(submitted, null, 2)}</pre>
-                    </div>
-                )}
-            </Form>
-        </div>
-    );
+    </div>
+  );
 }
-

@@ -4,6 +4,7 @@ import IndexPage from "@/pages/index";
 import './styles/globals.css'
 import Lenis from 'lenis'
 import CardSection from "./components/CardSection";
+import Feedback from "./components/Feedback";
 
 function App() {
   const lenis = new Lenis({
@@ -14,8 +15,11 @@ function App() {
   });
   return (
     <Routes>
+
       <Route element={<IndexPage />} path="/" />
       <Route element={<CardSection />} path="/news" />
+      <Route element={<Feedback />} path="/feedback" />
+
 
     </Routes>
   );

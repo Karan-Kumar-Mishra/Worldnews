@@ -9,6 +9,7 @@ import { Card, CardHeader, CardFooter, Image } from "@heroui/react";
 import { nanoid } from "nanoid";
 import useGithub from "@/hooks/useGithub";
 
+
 export default function CardSection() {
     const state = useSelector((state) => state)
     const [items, setItems] = useState([]);
@@ -32,14 +33,15 @@ export default function CardSection() {
         Getuser();
         setTimeout(() => {
             if (localStorage.getItem("email") == null) {
-                // window.location.href = "/";
+                window.location.href = "/";
             }
         }, 1000);
     }, [])
 
     return (
-        <div>
+        <div className="z-80">
             <NewNavbar />
+    
             <InfiniteScroll
                 dataLength={5}
                 next={fetchMoreData}
@@ -52,7 +54,7 @@ export default function CardSection() {
                 {
                     jsondata.results.map((item) => {
                         return (
-                            <Card key={uniqueKey} isFooterBlurred className="w-[300px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-800 shadow-2xl ">
+                            <Card key={uniqueKey} isFooterBlurred className="  w-[300px] h-[250px] col-span-12 sm:col-span-7  shadow-neutral-800 shadow-2xl ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                                     <p className="text-tiny text-white/60 uppercase font-bold">{item.pubDate}</p>
                                     <h4 className="text-white/90 font-medium text-xl">{item.title}</h4>

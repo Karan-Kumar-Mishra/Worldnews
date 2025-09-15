@@ -15,7 +15,7 @@ export default function useGithub() {
 
     if (userError) {
       console.error("GetUser error =>", userError);
-      alert(userError)
+      console.log(userError)
     } else {
       console.log("User info =>", user);
       localStorage.setItem("email", user?.email || "");

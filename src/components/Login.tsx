@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import useGoogle from '../hooks/useGoogle'
 import useGithub from '@/hooks/useGithub';
+import Background from './ui/Background';
 const Login = () => {
   const { GoogleSignIn } = useGoogle();
   const { signInWithGithub } = useGithub();
@@ -16,9 +17,8 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black p-4">
-      {/* Background with blur effect */}
-      <div className="fixed inset-0 bg-gradient-to-br from-black-900/30 to-neutral-700 backdrop-blur-md z-0"></div>
+    <div className="min-h-screen flex items-center justify-center bg-black p-4 z-50">
+      <Background/>
 
       {/* Grid pattern overlay */}
       <div className="fixed inset-0  bg-gray-800 opacity-10 z-0  bg-gradient-to-br from-black to-neutral-700 "></div>

@@ -23,6 +23,8 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
+import { useNavigate } from "react-router-dom";
+
 import React from "react";
 import SearchBar from "./SearchBar";
 import useGithub from "@/hooks/useGithub";
@@ -76,8 +78,8 @@ export default function NewNavbar() {
   const state = useSelector((state) => state)
   const dispatch = useDispatch()
   const { GoogleLogout } = useGoogle();
-  const { signOut }= useGithub();
-
+  const { signOut } = useGithub();
+  const nevigate = useNavigate();
 
   function opeingprofiletab(value: any) {
     if (value) {
@@ -189,12 +191,8 @@ export default function NewNavbar() {
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{(localStorage.getItem('email')) ? localStorage.getItem('email') : "email"}</p>
             </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+           
+            <DropdownItem key="help_and_feedback" onClick={() => nevigate("/feedback")}>Help & Feedback</DropdownItem>
             <DropdownItem onClick={() => {
               GoogleLogout();
               signOut();
