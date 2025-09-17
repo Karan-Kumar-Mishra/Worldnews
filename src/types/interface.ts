@@ -24,3 +24,21 @@ export type usertype = {
     picture: string,
     verified_email: true
 }
+
+export interface RootState {
+    Data: {
+        info: {
+            ProfileTabOpen: boolean;
+        },
+        user: {
+            token: string,
+            email: string,
+            family_name: string,
+            given_name: string,
+            id: string,
+            name: string,
+            picture: string,
+            verified_email: string
+        }
+    };
+}

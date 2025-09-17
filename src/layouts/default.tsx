@@ -5,7 +5,8 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative h-screen  bg-black">
+    <div className="relative  bg-black">
+      
       <main>
         {children}
       </main>
