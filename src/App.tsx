@@ -5,7 +5,7 @@ import './styles/globals.css'
 import Lenis from 'lenis'
 import CardSection from "./components/CardSection";
 import Feedback from "./components/Feedback";
-import '../src/styles/style.css'
+
 function App() {
   const lenis = new Lenis({
     autoRaf: true,

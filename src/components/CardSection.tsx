@@ -1,55 +1,25 @@
-
-import { useEffect } from "react";
-import { useSelector } from 'react-redux'
-// import NewsSkeleton from "./NewsSkeleton";
 import NewNavbar from "./NewNavbar";
-import jsondata from "./data.json";
 import { Card, CardHeader, CardFooter, Image } from "@heroui/react";
-import { nanoid } from "nanoid";
-import useGithub from "@/hooks/useGithub";
-import { RootState } from "@/Redux/store";
 import Background from "./ui/Background";
+
+import useCardSectionHandler from "@/hooks/useCardSectionHandler";
 
 
 export default function CardSection() {
-
-
-    const state = useSelector((state: RootState) => state)
-    const { Getuser } = useGithub()
-
-
-    window.addEventListener('scroll', (e) => {
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight === document.documentElement.scrollHeight) {
-           console.log("reached at bottom..")
-        }
-
-    })
-
-
-    useEffect(() => {
-        Getuser();
-        setTimeout(() => {
-            if (localStorage.getItem("email") == null) {
-                window.location.href = "/";
-            }
-        }, 1000);
-    }, [])
-
+    const { state, newsdata } = useCardSectionHandler();
 
     return (
-        <div className="z-80">
+        <div className=" h-full w-full">
             <NewNavbar />
             <Background />
             <div
-
-                className={`bg-black    flex flex-wrap items-center justify-center gap-10     p-4 ${state.Data.info.ProfileTabOpen ? 'blur-2xl' : ''}`}
+                className={`bg-black flex flex-wrap items-center justify-center gap-10  p-4 ${state.Data.info.ProfileTabOpen ? 'blur-2xl' : ''}`}
             >
-
                 {
-                    jsondata.results.map((item) => {
-                        const uniqueKey = nanoid();
+                    newsdata.map((item) => {
+                       
                         return (
-                            <Card key={uniqueKey} isFooterBlurred className="  w-[300px] h-[250px] col-span-12 sm:col-span-7   ">
+                            <Card  key={item.source_id || item.pubDate } isFooterBlurred className="  w-[300px] h-[250px] col-span-12 sm:col-span-7   ">
                                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                                     <p className="text-tiny text-white/60 uppercase font-bold">{item.pubDate}</p>
                                     <h4 className="text-white/90 font-medium text-xl">{item.title}</h4>

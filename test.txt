@@ -40,3 +40,5 @@
                 }
 
             </div>
+        
+        https://newsdata.io/api/1/latest?apikey=pub_5cbb0606b62f4cb3bb34208ceba6d563&q=sports&size=1

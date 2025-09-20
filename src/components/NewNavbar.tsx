@@ -119,7 +119,7 @@ export default function NewNavbar() {
     "Log Out",
   ];
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} className="bg-transparent " onMenuOpenChange={setIsMenuOpen}>
+    <Navbar isBordered isMenuOpen={isMenuOpen} className="bg-transparent overflow-hidden" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent className="sm:hidden bg-transparent " justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
