@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { ProviderC } from "./provider.tsx";
 import { HeroUIProvider } from "@heroui/react";
 import "@/styles/globals.css";
+import "@/styles/style.css";
 import { store } from './Redux/store.ts'
 import { Provider } from 'react-redux'
 import { GoogleOAuthProvider } from "@react-oauth/google";

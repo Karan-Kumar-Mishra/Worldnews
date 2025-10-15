@@ -1,20 +1,16 @@
 import { useState } from "react"
-
-
+import newsdata from './data.json'
+import '../styles/style.css'
 export default function SearchBar() {
-  const data = [
-    "first",
-    "second",
-    "thred",
-    "foure",
-    "five"
-  ]
-  const [items, setitems] = useState<string[]>([])
-  function handelchange(e:React.ChangeEvent<HTMLInputElement>) {
+  const data = newsdata.results;
+  const [items, setitems] = useState<any[]>([])
+
+  function handelchange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     if (value.length > 0) {
-      const filterdata = data.filter((item) => 
-       item.toLowerCase().includes(value.toLowerCase())
+      console.log("data=>", data)
+      const filterdata = data.filter((item) =>
+        item.title.toLowerCase().includes(value.toLowerCase())
       )
       console.log("running filter data=>", filterdata)
       setitems(filterdata)
@@ -31,12 +27,12 @@ export default function SearchBar() {
           onChange={handelchange}
           className='w-95 border-white z-50 text-white p-1  outline-none rounded-[10px]' type="text" name="" id="" />
       </div>
-      <div className=''>
+      <div id="search_bar_list" className='hide-scroll overflow-y-scroll flex flex-wrap max-h-50 scroll-hide z-9999 '>
         {
           (
             items.map((item) =>
             (
-              <h1 key={item} className='m-2 p-2 text-white rounded-2xl bg-neutral-600'>{item}</h1>
+              <h1 key={item.article_id} className='m-2 p-2 text-white rounded-2xl bg-neutral-600'>{item.title}</h1>
             )
             )
           )
