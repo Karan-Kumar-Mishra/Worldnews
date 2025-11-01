@@ -18,7 +18,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black p-4 z-50">
-      <Background/>
+      <Background />
 
       {/* Grid pattern overlay */}
       <div className="fixed inset-0  bg-gray-800 opacity-10 z-0  bg-gradient-to-br from-black to-neutral-700 "></div>

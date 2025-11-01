@@ -17,6 +17,7 @@ import {
   ModalBody,
   Button,
 } from "@heroui/react";
+import photo from '../assets/Default.jpg'
 
 import WorldnewsLogo from "@/utils/WorldnewsLogo";
 import SearchIcon from "@/utils/SearchIcon";
@@ -95,8 +96,8 @@ export default function NewNavbar() {
               color="secondary"
               name="Jason Hughes"
               size="sm"
-              onError={state?.Data?.info?.user?.picture}
-              src={(localStorage.getItem('picture')) ? localStorage.getItem('picture') : "https://static.thenounproject.com/png/5100711-200.png"}
+              onError={photo}
+              src={(localStorage.getItem('picture')) ? localStorage.getItem('picture') : null}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">

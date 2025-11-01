@@ -4,7 +4,7 @@ import '../styles/style.css'
 export default function SearchBar() {
   const data = newsdata.results;
   const [items, setitems] = useState<any[]>([])
-
+ 
   function handelchange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     if (value.length > 0) {

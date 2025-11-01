@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { setToken, setProfile } from '../Redux/Reducers'
 import axios from "axios";
+
 function useGoogle() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -23,10 +24,10 @@ function useGoogle() {
                     )
                     .then((res) => {
                         console.log("info=> ", res.data)
-                        dispatch(setProfile(res.data));
-                        localStorage.setItem("email", res.data.email);
-                        localStorage.setItem("name", res.data.name);
-                        localStorage.setItem("picture", res.data.picture);
+                        dispatch(setProfile(res?.data));
+                        localStorage.setItem("email", res?.data?.email);
+                        localStorage.setItem("name", res?.data?.name);
+                        localStorage.setItem("picture", res?.data?.picture);
                         navigate("/news");
                     })
                     .catch((err) => console.log(err));
@@ -40,6 +41,7 @@ function useGoogle() {
         localStorage.clear();
         navigate("/");
     };
+ 
 
     return { GoogleSignIn, GoogleLogout };
 }

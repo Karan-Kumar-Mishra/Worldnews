@@ -1,9 +1,14 @@
 .scroll-hide {
-  overflow: auto;          /* or scroll */
-  scrollbar-width: none;   /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  overflow: auto;         
+  scrollbar-width: none;  
+  -ms-overflow-style: none;
 }
 
 .scroll-hide::-webkit-scrollbar {
-  display: none;           /* Chrome, Safari, Opera */
+  display: none;          
+}
+
+html {
+  scroll-behavior: smooth;
+
 }

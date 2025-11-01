@@ -11,7 +11,7 @@ const initialState: CounterState = {
             given_name: null,
             id: null,
             name: null,
-            picture: "https://static.thenounproject.com/png/5100711-200.png",
+            picture: null,
             verified_email: null
         }
     },
