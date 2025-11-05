@@ -31,7 +31,6 @@ export default function useGithub() {
         redirectTo: "http://localhost:5173/news",
       },
     });
-
     if (error) {
       console.error("SignIn error =>", error);
       return;

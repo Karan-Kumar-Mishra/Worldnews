@@ -26,7 +26,7 @@ import SearchBar from "./SearchBar";
 import useNewNavbar from "@/hooks/useNewNavbar";
 
 export default function NewNavbar() {
-  const { state, isMenuOpen, setIsMenuOpen,
+  const { isMenuOpen, setIsMenuOpen,
     isOpen, onClose, backdrop, handleOpen,
     GoogleLogout, signOut, nevigate, dispatch,
     setClosePorfile, opeingprofiletab

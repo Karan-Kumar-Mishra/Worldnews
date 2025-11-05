@@ -1,7 +1,7 @@
 import jsondata from "../components/data.json";
 import useGithub from "./useGithub";
 import { RootState } from "@/Redux/store";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NewsType } from "@/types/NewsType";
 

@@ -11,7 +11,6 @@ import { Provider } from 'react-redux'
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_CLIENT_ID}>
       <HeroUIProvider>
         <main className="dark text-foreground bg-black ">
