@@ -1,4 +1,4 @@
-import {heroui} from "@heroui/theme"
+import { heroui } from "@heroui/theme"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,7 +10,12 @@ export default {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'soft': '2px 2px 40px 5px rgba(0, 0, 0, 0.1)',
+        'neon': '0 0 15px #00ffcc',
+      },
+    },
   },
   darkMode: "class",
   plugins: [heroui()],

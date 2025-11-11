@@ -6,7 +6,7 @@ export default function DefaultLayout({
 }) {
   return (
     <div className="relative  bg-black">
-      
+
       <main>
         {children}
       </main>

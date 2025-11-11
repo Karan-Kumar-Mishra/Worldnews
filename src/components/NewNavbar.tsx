@@ -3,7 +3,7 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
+  div,
   Dropdown,
   DropdownItem,
   DropdownTrigger,
@@ -24,6 +24,7 @@ import SearchIcon from "@/utils/SearchIcon";
 import menuItems from "@/utils/menuItems";
 import SearchBar from "./SearchBar";
 import useNewNavbar from "@/hooks/useNewNavbar";
+import { MouseEventHandler } from "react";
 
 export default function NewNavbar() {
   const { isMenuOpen, setIsMenuOpen,
@@ -31,6 +32,10 @@ export default function NewNavbar() {
     GoogleLogout, signOut, nevigate, dispatch,
     setClosePorfile, opeingprofiletab
   } = useNewNavbar();
+  function handelClick(evt: Event): MouseEventHandler<HTMLDivElement> {
+    console.log(evt.target)
+    evt.target.style.fontWeight = "bold";
+  }
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} className="bg-transparent overflow-hidden" onMenuOpenChange={setIsMenuOpen}>
@@ -51,28 +56,33 @@ export default function NewNavbar() {
           <p className="font-bold text-inherit">Worldnews</p>
         </NavbarBrand>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <div color="foreground" onClick={handelClick} >
             Entertainment
-          </Link>
+          </div>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" href="#">
+        <NavbarItem >
+          <div color="foreground" onClick={handelClick} >
             Business
-          </Link>
+          </div>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <div color="foreground" onClick={handelClick}>
             Sport
-          </Link>
+          </div>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <div color="foreground" onClick={handelClick}>
             Science
-          </Link>
+          </div>
+        </NavbarItem>
+        <NavbarItem>
+          <div color="foreground" onClick={handelClick}>
+            Technology
+          </div>
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="ml-100">
+      <NavbarContent className="ml-70 ">
         <Button
           className="capitalize"
           color="default"
@@ -120,7 +130,7 @@ export default function NewNavbar() {
       <NavbarMenu className="bg-transparent">
         {menuItems.map((item, index) => (
           <NavbarMenuItem className="text-cyan-400 " key={`${item}-${index}`}>
-            <Link
+            <div
               className="w-full text-white"
               color={
                 index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
@@ -129,7 +139,7 @@ export default function NewNavbar() {
               size="lg"
             >
               {item}
-            </Link>
+            </div>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

@@ -1,4 +1,5 @@
 import NewNavbar from "./NewNavbar";
+import AskAI from "./AskAI";
 import { Card, CardHeader, CardFooter, Image } from "@heroui/react";
 import Background from "./ui/Background";
 import useCardSectionHandler from "@/hooks/useCardSectionHandler";
@@ -8,9 +9,10 @@ import { motion } from "framer-motion";
 export default function CardSection() {
     const { state, newsdata } = useCardSectionHandler();
     return (
-        <div className=" h-full w-full">
+        <div className="h-full w-full ">
             <NewNavbar />
             <Background />
+            <AskAI/>
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
