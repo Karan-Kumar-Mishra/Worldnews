@@ -2,25 +2,28 @@ import jsondata from "../components/data.json";
 import useGithub from "./useGithub";
 import { RootState } from "@/Redux/store";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { NewsType } from "@/types/NewsType";
-import GetNews from "@/lib/GetNews";
 
+import GetNews from "@/lib/GetNews";
+import { setNewsStateData } from "@/Redux/Reducers";
 export default function useCardSectionHandler() {
   const state = useSelector((state: RootState) => state.Data);
   const { Getuser } = useGithub();
   const [nextpage, setnextpage] = useState<string | null>(null);
   const [newsdata, setnewsdata] = useState<NewsType[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const dispatch=useDispatch();
   const Getnews = () => {
     if (loading) return;
     setLoading(true);
     GetNews("world", nextpage)
-      .then((res) => {
-        console.log("res=> ", res);
+      .then((res:any) => {
+        // console.log("res=> ", res);
         setnextpage(res?.nextPage);
+        dispatch(setNewsStateData(res?.results))
         setnewsdata((prevnews) => [...prevnews, ...(res?.results || jsondata.results)]);
+        
       })
       .catch((err: Error) => {
         console.log(err);

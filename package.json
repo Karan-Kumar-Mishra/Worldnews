@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/genai": "^1.30.0",
     "@heroui/button": "2.2.23",
     "@heroui/code": "2.2.17",
     "@heroui/dropdown": "2.3.23",
@@ -24,6 +25,8 @@
     "@heroui/system": "2.4.19",
     "@heroui/theme": "2.4.19",
     "@heroui/use-theme": "2.1.10",
+    "@rcb-plugins/llm-connector": "^0.4.0",
+    "@rcb-plugins/markdown-renderer": "^0.3.1",
     "@react-aria/visually-hidden": "3.8.25",
     "@react-oauth/google": "^0.12.2",
     "@react-types/shared": "3.30.0",
@@ -41,6 +44,7 @@
     "gsap": "^3.13.0",
     "motion": "^12.23.12",
     "react": "18.3.1",
+    "react-chatbotify": "^2.4.1",
     "react-dom": "18.3.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "6.23.0",

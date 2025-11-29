@@ -1,18 +1,22 @@
 import NewNavbar from "./NewNavbar";
-import AskAI from "./AskAI";
 import { Card, CardHeader, CardFooter, Image } from "@heroui/react";
 import Background from "./ui/Background";
 import useCardSectionHandler from "@/hooks/useCardSectionHandler";
 import { nanoid } from "@reduxjs/toolkit";
 import { motion } from "framer-motion";
-
+import ChatBot from "react-chatbotify";
+import settings from "@/config/ChatBot";
+// import themes from "@/config/themes";
+import flow from "@/config/ChatBotFlow";
+import ChatBotStyles from "@/config/ChatBotStyle";
+import plugins from "@/config/ChatBotplugins";
 export default function CardSection() {
     const { state, newsdata } = useCardSectionHandler();
     return (
         <div className="h-full w-full ">
             <NewNavbar />
             <Background />
-            <AskAI/>
+            <ChatBot settings={settings} styles={ChatBotStyles} flow={flow} plugins={plugins} />
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}

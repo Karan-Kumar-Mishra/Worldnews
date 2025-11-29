@@ -3,7 +3,7 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  div,
+
   Dropdown,
   DropdownItem,
   DropdownTrigger,
@@ -18,13 +18,12 @@ import {
   Button,
 } from "@heroui/react";
 import photo from '../assets/Default.jpg'
-
 import WorldnewsLogo from "@/utils/WorldnewsLogo";
 import SearchIcon from "@/utils/SearchIcon";
 import menuItems from "@/utils/menuItems";
 import SearchBar from "./SearchBar";
 import useNewNavbar from "@/hooks/useNewNavbar";
-import { MouseEventHandler } from "react";
+
 
 export default function NewNavbar() {
   const { isMenuOpen, setIsMenuOpen,
@@ -32,10 +31,7 @@ export default function NewNavbar() {
     GoogleLogout, signOut, nevigate, dispatch,
     setClosePorfile, opeingprofiletab
   } = useNewNavbar();
-  function handelClick(evt: Event): MouseEventHandler<HTMLDivElement> {
-    console.log(evt.target)
-    evt.target.style.fontWeight = "bold";
-  }
+
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} className="bg-transparent overflow-hidden" onMenuOpenChange={setIsMenuOpen}>
@@ -55,28 +51,28 @@ export default function NewNavbar() {
           <WorldnewsLogo />
           <p className="font-bold text-inherit">Worldnews</p>
         </NavbarBrand>
-        <NavbarItem>
-          <div color="foreground" onClick={handelClick} >
+        <NavbarItem >
+          <div color="foreground"  >
             Entertainment
           </div>
         </NavbarItem>
         <NavbarItem >
-          <div color="foreground" onClick={handelClick} >
+          <div color="foreground"  >
             Business
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" onClick={handelClick}>
+          <div color="foreground" >
             Sport
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" onClick={handelClick}>
+          <div color="foreground" >
             Science
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" onClick={handelClick}>
+          <div color="foreground" >
             Technology
           </div>
         </NavbarItem>
@@ -92,9 +88,7 @@ export default function NewNavbar() {
           <SearchIcon />
         </Button>
       </NavbarContent>
-
       <NavbarContent justify="end">
-
         <Dropdown placement="bottom-end" className="dark text-white bg-transparent border-neutral-600 border-1 z-50 shadow-2xl" onOpenChange={(e) => {
           opeingprofiletab(e);
         }} >

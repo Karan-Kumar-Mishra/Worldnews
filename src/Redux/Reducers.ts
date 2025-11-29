@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CounterState, usertype } from '@/types/interface'
-
 const initialState: CounterState = {
     info: {
         ProfileTabOpen: false,
+        NewsData: [],
         user: {
             token: null,
             email: null,
@@ -15,7 +15,6 @@ const initialState: CounterState = {
             verified_email: null
         }
     },
-
 }
 
 export const Reducers = createSlice({
@@ -46,11 +45,15 @@ export const Reducers = createSlice({
             state.info.user.id = null;
             state.info.user.name = null;
             state.info.user.picture = null;
+        },
+        setNewsStateData: (state, action: PayloadAction<string>) => {
+            state.info.NewsData = [...state.info.NewsData, ...action.payload]
         }
     },
 })
 
 
-export const { setOpenProfile, setClosePorfile, setToken, setProfile } = Reducers.actions
+export const { setOpenProfile, setClosePorfile,
+    setToken, setProfile, setNewsStateData } = Reducers.actions
 
 export const counterReducer = Reducers.reducer;

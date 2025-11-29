@@ -1,6 +1,7 @@
-
+import { NewsType } from "./NewsType";
 export interface CounterState {
     info: {
+        NewsData :NewsType[],
         ProfileTabOpen: boolean,
         user: {
             token: string | null,
