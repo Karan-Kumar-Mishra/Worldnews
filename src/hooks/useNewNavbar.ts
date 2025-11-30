@@ -7,6 +7,7 @@ import { setOpenProfile, setClosePorfile } from '../Redux/Reducers'
 import { useNavigate } from "react-router-dom";
 import { useDisclosure } from "@heroui/react";
 import { RootState } from "@/types/interface";
+import { setTab } from "../Redux/Reducers";
 
 export default function useNewNavbar() {
     const state = useSelector((state: RootState) => state.Data)
@@ -41,6 +42,6 @@ export default function useNewNavbar() {
         dispatch, setClosePorfile, state, isMenuOpen,
         setBackdrop, setIsMenuOpen, isOpen, onClose,
         backdrop, handleOpen, GoogleLogout, signOut,
-        nevigate, opeingprofiletab
+        nevigate, opeingprofiletab,setTab
     };
 }

@@ -3,6 +3,7 @@ export interface CounterState {
     info: {
         NewsData :NewsType[],
         ProfileTabOpen: boolean,
+        Tab:string,
         user: {
             token: string | null,
             email: string | null,

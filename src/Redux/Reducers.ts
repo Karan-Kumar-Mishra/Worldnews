@@ -4,6 +4,7 @@ const initialState: CounterState = {
     info: {
         ProfileTabOpen: false,
         NewsData: [],
+        Tab: "world",
         user: {
             token: null,
             email: null,
@@ -46,14 +47,17 @@ export const Reducers = createSlice({
             state.info.user.name = null;
             state.info.user.picture = null;
         },
-        setNewsStateData: (state, action: PayloadAction<string>) => {
+        setNewsStateData: (state, action: PayloadAction<any>) => {
             state.info.NewsData = [...state.info.NewsData, ...action.payload]
+        },
+        setTab: (state, action: PayloadAction<string>) => {
+            state.info.Tab = action.payload
         }
     },
 })
 
 
 export const { setOpenProfile, setClosePorfile,
-    setToken, setProfile, setNewsStateData } = Reducers.actions
+    setToken, setProfile, setNewsStateData, setTab } = Reducers.actions
 
 export const counterReducer = Reducers.reducer;

@@ -3,7 +3,6 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-
   Dropdown,
   DropdownItem,
   DropdownTrigger,
@@ -29,7 +28,7 @@ export default function NewNavbar() {
   const { isMenuOpen, setIsMenuOpen,
     isOpen, onClose, backdrop, handleOpen,
     GoogleLogout, signOut, nevigate, dispatch,
-    setClosePorfile, opeingprofiletab
+    setClosePorfile, opeingprofiletab,setTab
   } = useNewNavbar();
 
 
@@ -52,27 +51,27 @@ export default function NewNavbar() {
           <p className="font-bold text-inherit">Worldnews</p>
         </NavbarBrand>
         <NavbarItem >
-          <div color="foreground"  >
+          <div color="foreground" onClick={()=> dispatch(setTab("entertainment"))} >
             Entertainment
           </div>
         </NavbarItem>
         <NavbarItem >
-          <div color="foreground"  >
+          <div color="foreground" onClick={()=> dispatch(setTab("business"))} >
             Business
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" >
+          <div color="foreground" onClick={()=> dispatch(setTab("sport"))}>
             Sport
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" >
+          <div color="foreground" onClick={()=> dispatch(setTab("science"))}>
             Science
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" >
+          <div color="foreground" onClick={()=> dispatch(setTab("technology"))}>
             Technology
           </div>
         </NavbarItem>

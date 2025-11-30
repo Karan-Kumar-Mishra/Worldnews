@@ -2,7 +2,7 @@ import jsondata from "../components/data.json";
 import useGithub from "./useGithub";
 import { RootState } from "@/Redux/store";
 import { useState, useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NewsType } from "@/types/NewsType";
 
 import GetNews from "@/lib/GetNews";
@@ -13,17 +13,15 @@ export default function useCardSectionHandler() {
   const [nextpage, setnextpage] = useState<string | null>(null);
   const [newsdata, setnewsdata] = useState<NewsType[]>([]);
   const [loading, setLoading] = useState(false);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const Getnews = () => {
     if (loading) return;
     setLoading(true);
-    GetNews("world", nextpage)
-      .then((res:any) => {
-        // console.log("res=> ", res);
+    GetNews(state.info.Tab, nextpage)
+      .then((res: any) => {
         setnextpage(res?.nextPage);
         dispatch(setNewsStateData(res?.results))
         setnewsdata((prevnews) => [...prevnews, ...(res?.results || jsondata.results)]);
-        
       })
       .catch((err: Error) => {
         console.log(err);
@@ -44,7 +42,12 @@ export default function useCardSectionHandler() {
       console.log("error while scrolling...", error);
     }
   };
-
+  useEffect(() => {
+    console.log("tab is change ->", state.info.Tab)
+    dispatch(setNewsStateData([]))
+    setnewsdata([])
+    Getnews();
+  }, [state.info.Tab])
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -61,5 +64,5 @@ export default function useCardSectionHandler() {
     return () => clearTimeout(timer);
   }, []);
 
-  return { state, newsdata, setnewsdata, handleScroll };
+  return { state, newsdata, setnewsdata, handleScroll,loading };
 }
