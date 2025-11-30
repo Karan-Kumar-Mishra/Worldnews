@@ -28,7 +28,7 @@ export default function NewNavbar() {
   const { isMenuOpen, setIsMenuOpen,
     isOpen, onClose, backdrop, handleOpen,
     GoogleLogout, signOut, nevigate, dispatch,
-    setClosePorfile, opeingprofiletab,setTab
+    setClosePorfile, opeingprofiletab, setTab
   } = useNewNavbar();
 
 
@@ -51,27 +51,27 @@ export default function NewNavbar() {
           <p className="font-bold text-inherit">Worldnews</p>
         </NavbarBrand>
         <NavbarItem >
-          <div color="foreground" onClick={()=> dispatch(setTab("entertainment"))} >
+          <div color="foreground" onClick={() => dispatch(setTab("entertainment"))} >
             Entertainment
           </div>
         </NavbarItem>
         <NavbarItem >
-          <div color="foreground" onClick={()=> dispatch(setTab("business"))} >
+          <div color="foreground" onClick={() => dispatch(setTab("business"))} >
             Business
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" onClick={()=> dispatch(setTab("sport"))}>
+          <div color="foreground" onClick={() => dispatch(setTab("sport"))}>
             Sport
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" onClick={()=> dispatch(setTab("science"))}>
+          <div color="foreground" onClick={() => dispatch(setTab("science"))}>
             Science
           </div>
         </NavbarItem>
         <NavbarItem>
-          <div color="foreground" onClick={()=> dispatch(setTab("technology"))}>
+          <div color="foreground" onClick={() => dispatch(setTab("technology"))}>
             Technology
           </div>
         </NavbarItem>
@@ -128,8 +128,15 @@ export default function NewNavbar() {
               color={
                 index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
               }
-              href="#"
-              size="lg"
+              onClick={() => {
+                if (item == "Help & Feedback") {
+                  nevigate("/feedback")
+                }
+                else if (item == "Log Out") {
+                  GoogleLogout();
+                  signOut();
+                }
+              }}
             >
               {item}
             </div>

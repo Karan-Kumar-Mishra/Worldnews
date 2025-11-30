@@ -1,9 +1,7 @@
 
-//  import { MemoryVectorStore } from "langchain/vectorstores/memory";
-
-
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { RecursiveCharacterTextSplitter } from "@langchain/text_splitter";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
 class LangChainRAG {

@@ -4,9 +4,9 @@ import { RootState } from "@/Redux/store";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NewsType } from "@/types/NewsType";
-
 import GetNews from "@/lib/GetNews";
 import { setNewsStateData } from "@/Redux/Reducers";
+
 export default function useCardSectionHandler() {
   const state = useSelector((state: RootState) => state.Data);
   const { Getuser } = useGithub();
@@ -64,5 +64,5 @@ export default function useCardSectionHandler() {
     return () => clearTimeout(timer);
   }, []);
 
-  return { state, newsdata, setnewsdata, handleScroll,loading };
+  return { state, newsdata, setnewsdata, handleScroll, loading };
 }

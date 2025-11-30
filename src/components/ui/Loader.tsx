@@ -2,19 +2,15 @@ import { Spinner } from "@heroui/spinner";
 import {
     Modal,
     ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Button,
     useDisclosure,
 } from "@heroui/react";
 
 export default function Loader() {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { onOpenChange } = useDisclosure();
     return (
         <>
-            <Modal isOpen={true} onOpenChange={onOpenChange}>
-                <ModalContent className="bg-black w-50">
+            <Modal hideCloseButton={true} isOpen={true} onOpenChange={onOpenChange}>
+                <ModalContent className="bg-black w-fit overflow-hidden rounded-full">
                     <Spinner />
                 </ModalContent>
             </Modal>
